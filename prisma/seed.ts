@@ -3,9 +3,9 @@ import prisma from "../src/database/database";
 async function main() {
     await prisma.platforms.createMany({
         data: [
-            {"name": "Netflix"},
-            {"name": "Prime Video"},
-            {"name": "Youtube"}
+            {name: "Netflix"},
+            {name: "Prime Video"},
+            {name: "Youtube"}
         ]
 })
 }

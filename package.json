@@ -10,7 +10,7 @@
     "prisma:seed": "npx prisma db seed"
   },
   "prisma": {
-    "seed": "ts-node prima/seed.ts"
+    "seed": "ts-node prisma/seed.ts"
   },
   "keywords": [],
   "author": "",

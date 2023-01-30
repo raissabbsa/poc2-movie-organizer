@@ -73,6 +73,22 @@ async function deleteMovies(id: number) {
     })
 }
 
+async function getPlatformsMovies() {
+    return prisma.platforms.findMany({
+        include:{
+            movies: true
+        }
+    })
+}
+
+async function getGenres(id: number) {
+    return prisma.genres.findFirst({
+        where: { id },
+        include: {
+            movies: true
+        }
+    })
+}
 
 const movieRepository = {
     getUsersId,
@@ -83,6 +99,8 @@ const movieRepository = {
     updateMovie,
     getUsersCpf,
     postUser,
-    deleteMovies
+    deleteMovies,
+    getPlatformsMovies,
+    getGenres
 }
 export default movieRepository;

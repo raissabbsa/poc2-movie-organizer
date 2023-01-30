@@ -72,14 +72,9 @@ async function postUser(req: Request, res: Response){
 
 async function getPlatforms(req: Request, res: Response){
     try{
-        // const platforms = await connection.query(`
-        //     SELECT platforms.* ,
-        //     COUNT(movies.platform_id) AS number_movies
-        //     FROM platforms 
-        //     JOIN movies ON platforms.id = movies.platform_id
-        //     GROUP BY platforms.id, movies.platform_id`);
-            
-        // res.send(platforms.rows);
+        const data = await movieRepository.getPlatformsMovies();
+        res.send(data);
+        
     }catch(err){
         console.log(err);
         res.sendStatus(500);
@@ -89,20 +84,14 @@ async function getPlatforms(req: Request, res: Response){
 async function getGenreId(req: Request, res: Response){
     const id : string = req.params.id;
     try{
-        // const genreExist = await connection.query(`SELECT * FROM genres WHERE id = $1`, [id]);
-        // if(genreExist.rows.length === 0){
-        //     return res.sendStatus(404);
-        // }
+        const genreExist = await movieRepository.getGenresId(Number(id));
+        if(!genreExist){
+            return res.sendStatus(404);
+        }
 
-        // const genre = await connection.query(`
-        //     SELECT genres.* ,
-        //     COUNT(movies.genre_id) AS number_movies
-        //     FROM genres 
-        //     JOIN movies ON genres.id = movies.genre_id
-        //     WHERE genres.id = $1
-        //     GROUP BY genres.id, movies.platform_id`, [id]);
+        const genre = await movieRepository.getGenres(Number(id));
 
-        // res.send(genre.rows);
+        res.send(genre);
     }catch(err){
         console.log(err);
         res.sendStatus(500);
