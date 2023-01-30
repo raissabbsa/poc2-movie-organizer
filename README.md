@@ -15,7 +15,7 @@ Body: { "id": 1, "note": "Muito bom" }
 
 POST: /user
 Body: {
-  "name": "A dama de ferro",
+  "name": "Ana",
   "cpf": "04422222222",
   "phone": "85999990000"
 }
